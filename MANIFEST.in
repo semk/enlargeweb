@@ -1,0 +1,6 @@
+include enlargeweb/public/files *.kickstart
+include enlargeweb/public/files *.preseed
+include enlargeweb/public/*
+recursive-include enlargeweb/public/images *
+recursive-include enlargeweb/templates *
+

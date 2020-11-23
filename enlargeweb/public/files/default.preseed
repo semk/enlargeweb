@@ -1,0 +1,60 @@
+# Locale sets language and country.
+d-i debian-installer/locale string en_US
+d-i console-setup/ask_detect boolean false
+d-i console-setup/layoutcode string pc105
+
+### Network configuration
+d-i netcfg/choose_interface select auto
+d-i netcfg/wireless_wep string
+d-i hw-detect/load_firmware boolean true
+
+### Mirror settings
+d-i mirror/protocol string ftp
+d-i mirror/ftp/hostname string 172.16.75.1
+d-i mirror/ftp/directory string /ubuntu
+d-i mirror/ftp/proxy string
+
+### Clock and time zone setup
+d-i clock-setup/utc boolean true
+d-i time/zone string US/Eastern
+d-i clock-setup/ntp boolean true
+
+### Partitioning
+d-i partman-auto/method string lvm
+d-i partman-auto-lvm/guided_size max
+d-i partman-lvm/device_remove_lvm boolean true
+d-i partman-md/device_remove_md boolean true
+d-i partman-lvm/confirm boolean true
+d-i partman-auto/choose_recipe select atomic
+d-i partman/confirm_write_new_label boolean true
+d-i partman/choose_partition select finish
+d-i partman/confirm boolean true
+
+### Account setup
+d-i passwd/root-login boolean true
+d-i passwd/root-password password %password%
+d-i passwd/root-password-again password %password%
+d-i passwd/make-user boolean false
+
+### Package selection
+d-i tasksel/first multiselect standard, web-server 
+d-i pkgsel/update-policy select unattended-upgrades
+d-i pkgsel/include string openssh-server build-essential python-setuptools
+
+### SSH
+openssh-server  ssh/new_config  boolean true
+openssh-server  ssh/use_old_init_script boolean true
+openssh-server  ssh/vulnerable_host_keys        note    
+openssh-server  ssh/disable_cr_auth     boolean false
+openssh-server  ssh/encrypted_host_key_but_no_keygen    note 
+
+### Boot
+d-i grub-installer/only_debian boolean true
+d-i grub-installer/with_other_os boolean true
+d-i finish-install/reboot_in_progress note
+
+# Monitor autodetection is recommended.
+xserver-xorg xserver-xorg/autodetect_monitor boolean true
+xserver-xorg xserver-xorg/config/monitor/selection-method select medium
+xserver-xorg xserver-xorg/config/monitor/mode-list select 1024x768 @ 60 Hz
+

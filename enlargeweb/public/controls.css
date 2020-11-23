@@ -1,0 +1,16 @@
+div.msg-inner
+{
+	background: White;
+    color: Green;
+    text-align: center;
+    vertical-align: middle;
+	height: 50px;
+	margin: 0 0 0 0 auto;
+}
+
+div.act-status-inner
+{
+	padding: 0 5px;
+	background: White;
+	text-align: center;
+}
